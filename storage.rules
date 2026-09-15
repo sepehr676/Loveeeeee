@@ -1,0 +1,37 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /treasures/{userId}/{treasureId}/{fileName} {
+      allow write: if request.auth != null
+        && request.auth.uid == userId
+        && request.resource.size <= 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+
+      allow read: if request.auth != null
+        && firestore.exists(/databases/(default)/documents/treasures/$(treasureId))
+        && (
+          (
+            firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.ownerId == request.auth.uid
+            &&
+            (
+              firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.locked == false
+              ||
+              firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.unlockAt <= request.time
+            )
+          )
+          ||
+          (
+            firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.visibility == "shared"
+            &&
+            (
+              firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.locked == false
+              ||
+              firestore.get(/databases/(default)/documents/treasures/$(treasureId)).data.unlockAt <= request.time
+            )
+          )
+        );
+
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
