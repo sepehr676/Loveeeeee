@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#60765d">
+<title>💎 گنجینه‌ی ما</title>
+<style>
+:root{--g:#60765d;--gd:#40533f;--sage:#edf2e9;--cream:#fffdf6;--gold:#c69a39;--ink:#263229;--muted:#7a8579;--line:#dce5d9}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:linear-gradient(135deg,#f4f7f0,#edf2e9 58%,#fbf7ed);color:var(--ink);font-family:Tahoma,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(#83917c 1px,transparent 1px);background-size:25px 25px}
+button,input,textarea,select{font:inherit}button{border:0;border-radius:999px;padding:12px 20px;background:var(--g);color:#fff;font-weight:700;cursor:pointer;transition:.2s;box-shadow:0 8px 22px rgba(64,83,63,.16)}button:hover{transform:translateY(-2px)}button.secondary{background:#edf2e9;color:var(--gd);box-shadow:none}
+.page{width:min(1120px,100%);margin:auto;padding:25px 16px 60px;position:relative;z-index:2}
+.hero{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:32px;padding:42px clamp(20px,5vw,60px);box-shadow:0 22px 75px rgba(45,65,47,.12);text-align:center;position:relative;overflow:hidden}
+.hero:after{content:"💎";position:absolute;left:8%;top:12%;font-size:70px;opacity:.08;transform:rotate(-12deg)}
+.hero .gem{font-size:65px;display:block;filter:drop-shadow(0 8px 14px rgba(198,154,57,.2))}
+h1{font-size:clamp(31px,6vw,56px);margin:8px 0 12px;line-height:1.4}h2{font-size:26px;margin:0 0 10px}.intro{font-size:18px;line-height:2.2;white-space:pre-line;color:#4a584c;margin:0 auto 20px;max-width:680px}.small{font-size:12px;color:var(--muted)}
+.toolbar{margin:18px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}.search{flex:1;min-width:190px;border:1px solid var(--line);background:rgba(255,255,255,.9);border-radius:999px;padding:12px 17px;outline:none}
+.filters{display:flex;gap:7px;flex-wrap:wrap}.filter{background:#fff;color:var(--gd);border:1px solid var(--line);box-shadow:none;padding:9px 14px;font-size:13px}.filter.active{background:var(--g);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:17px}
+.t-card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 12px 35px rgba(45,65,47,.09);cursor:pointer;transition:.25s;position:relative}.t-card:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(45,65,47,.14)}
+.t-photo{width:100%;height:220px;display:block;object-fit:cover;background:#eef2eb}.t-body{padding:17px}.type{display:inline-block;background:#f4eee0;color:#8c6a27;border-radius:99px;padding:5px 9px;font-size:11px}.t-title{font-size:19px;font-weight:800;margin:10px 0 7px}.t-date,.t-by{font-size:11px;color:var(--muted);margin:5px 0}.t-desc{font-size:13px;line-height:1.9;color:#526053;margin:8px 0 0}.locked-card{min-height:360px;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#f7f8f2,#fffdf6)}
+.lock-icon{font-size:54px;margin-bottom:8px}.lock-title{font-weight:800;font-size:20px}.lock-date{font-size:12px;color:var(--muted);line-height:2;margin-top:8px}
+.empty{padding:55px 20px;text-align:center;border:2px dashed #cbd8c5;border-radius:26px;background:rgba(255,255,255,.55);color:var(--muted)}
+.modal{position:fixed;inset:0;background:rgba(27,38,29,.62);display:none;align-items:center;justify-content:center;padding:14px;z-index:20;backdrop-filter:blur(6px)}.modal.show{display:flex}
+.modal-box{width:min(780px,100%);max-height:93vh;overflow:auto;background:var(--cream);border:1px solid var(--line);border-radius:30px;padding:22px;box-shadow:0 30px 90px rgba(0,0,0,.27);position:relative}.close{position:absolute;left:12px;top:12px;background:#edf2e9;color:var(--gd);box-shadow:none;padding:8px 12px}.modal h2{text-align:center;margin:7px 45px 18px}.modal-photo{width:100%;max-height:55vh;object-fit:contain;border-radius:20px;background:#eef2eb;display:block}.details{background:#fffdf5;border:1px solid #eadfbe;border-radius:20px;padding:17px;margin-top:16px}.details p{line-height:2;margin:7px 0;white-space:pre-line}.detail-label{font-size:11px;color:var(--muted)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:700}.field input,.field textarea,.field select{border:1px solid #d5ded1;border-radius:15px;background:#fff;padding:12px;outline:none}.field textarea{min-height:110px;resize:vertical}.drop{border:2px dashed #cbd8c5;border-radius:20px;padding:20px;text-align:center;background:#f8faf6}.drop input{width:100%}.preview{max-width:100%;max-height:220px;border-radius:17px;margin-top:12px;display:none;margin-left:auto;margin-right:auto}.choice-row{display:flex;gap:8px;flex-wrap:wrap}.choice{border:1px solid var(--line);background:#fff;border-radius:15px;padding:10px 13px;cursor:pointer;font-size:13px}.choice input{accent-color:var(--g);margin-left:5px}.progress-wrap{display:none;margin-top:14px}.progress{height:8px;background:#e8eee5;border-radius:99px;overflow:hidden}.progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--g),var(--gold));transition:width .2s}.progress-text{font-size:11px;color:var(--muted);margin-top:5px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#263229;color:#fff;padding:12px 18px;border-radius:999px;z-index:50;display:none;box-shadow:0 10px 30px rgba(0,0,0,.2)}.toast.show{display:block}
+.spark{position:fixed;z-index:45;pointer-events:none;font-size:18px;animation:spark 1.25s ease-out forwards}@keyframes spark{0%{transform:translate(0,0) scale(.4);opacity:0}20%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) rotate(160deg) scale(1.15);opacity:0}}
+.success{text-align:center;padding:35px 10px}.success .big{font-size:58px}.success h2{font-size:28px;color:var(--gd)}
+.status{text-align:center;margin:14px 0;color:var(--muted);font-size:13px}
+@media(max-width:650px){.page{padding:12px 10px 40px}.hero{padding:30px 17px;border-radius:25px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.t-photo{height:190px}.toolbar{align-items:stretch}.search{width:100%}.filters{overflow:auto;flex-wrap:nowrap;padding-bottom:4px}.modal-box{padding:16px;border-radius:23px}.modal-photo{max-height:45vh}}
+.danger-btn{background:#fff5f3!important;color:#a94a42!important;border:1px solid #efc7c1!important}
+</style>
+</head>
+<body>
+<main class="page">
+<section class="hero">
+<span class="gem">💎</span>
+<h1>گنجینه‌ی ما</h1>
+<p class="intro">چیزایی که شاید برای بقیه فقط یه عکس باشن،
+ولی برای ما یه دنیا خاطره‌ان. ❤️</p>
+<p class="intro" style="font-size:15px">گنجینه هنوز کامل نیست...
+
+چون هر خاطره‌ای که با هم می‌سازیم،
+یه چیز جدید برای گذاشتن اینجاست. ❤️</p>
+<div style="display:flex;justify-content:center;gap:9px;flex-wrap:wrap">
+<button onclick="openAdd()">💎 اضافه کردن گنج جدید</button>
+<button class="secondary" onclick="location.href='index.html'">← برگشت به سایت</button>
+</div>
+<div id="status" class="status">در حال اتصال به گنجینه...</div>
+</section>
+
+<section class="toolbar">
+<input id="search" class="search" placeholder="🔍 بین گنج‌ها جست‌وجو کن..." oninput="render()">
+<div id="filters" class="filters"></div>
+</section>
+<section id="grid" class="grid"></section>
+</main>
+
+<div id="addModal" class="modal" aria-hidden="true">
+<div class="modal-box">
+<button class="close" onclick="closeModal('addModal')">✕</button>
+<h2>💎 اضافه کردن گنج جدید</h2>
+<form id="treasureForm" onsubmit="saveTreasure(event)">
+<div class="form-grid">
+<div class="field full">
+<label>📷 انتخاب عکس *</label>
+<div class="drop"><input id="photo" type="file" accept="image/jpeg,image/png,image/webp,image/gif" required onchange="previewImage(event)"><img id="preview" class="preview" alt="پیش‌نمایش"></div>
+</div>
+<div class="field"><label>اسم گنج *</label><input id="title" maxlength="100" required placeholder="مثلاً اولین گلی که بهم دادی"></div>
+<div class="field"><label>نام شما *</label><input id="uploaderName" maxlength="40" required placeholder="مثلاً پسرت ❤️"></div>
+<div class="field full"><label>توضیح</label><textarea id="description" maxlength="1000" placeholder="این عکس چه خاطره‌ای برای ما دارد؟"></textarea></div>
+<div class="field"><label>تاریخ</label><input id="date" type="date"></div>
+<div class="field"><label>نوع گنج</label><select id="type"></select></div>
+<div class="field full"><label>دسترسی</label><div class="choice-row">
+<label class="choice"><input type="radio" name="visibility" value="shared" checked onchange="togglePrivateHint()"> 👩‍❤️‍👨 مشترک</label>
+<label class="choice"><input type="radio" name="visibility" value="private" onchange="togglePrivateHint()"> 🤫 خصوصی</label>
+</div><div class="small">گنج خصوصی فقط برای همان حسابی قابل مشاهده است که آن را ساخته.</div></div>
+<div class="field full"><label>زمان باز شدن</label><div class="choice-row">
+<label class="choice"><input type="radio" name="lock" value="now" checked onchange="toggleLock()"> 🔓 همین الان قابل مشاهده باشد</label>
+<label class="choice"><input type="radio" name="lock" value="locked" onchange="toggleLock()"> 🔒 گنج قفل‌شده</label>
+</div><input id="unlockAt" type="date" style="display:none;margin-top:8px"></div>
+</div>
+<div class="progress-wrap" id="progressWrap"><div class="progress"><i id="progressBar"></i></div><div id="progressText" class="progress-text">در حال آپلود...</div></div>
+<div style="display:flex;justify-content:center;margin-top:18px"><button id="saveBtn" type="submit">💎 ذخیره در گنجینه</button></div>
+</form>
+</div>
+</div>
+
+<div id="viewModal" class="modal" aria-hidden="true">
+<div class="modal-box">
+<button class="close" onclick="closeModal('viewModal')">✕</button>
+<div id="viewContent"></div>
+</div>
+</div>
+
+<div id="successModal" class="modal" aria-hidden="true">
+<div class="modal-box success">
+<div class="big">💎✨❤️</div><h2>گنج جدید پیدا شد!</h2><p>یه خاطره‌ی دیگه هم رفت توی گنجینه‌ی ما.</p><button onclick="closeModal('successModal')">چه قشنگ! ❤️</button>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+const TYPES={all:"همه",memory:"❤️ خاطره",gift:"🎁 هدیه",flower:"🌻 گل",place:"📍 مکان",message:"💬 پیام",travel:"✈️ سفر",photo:"📸 عکس",other:"✨ سایر"};
+let auth,db,currentUser=null,treasures=[],activeType="all",unsubs=[];
+
+function firebaseReady(){return window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey && !String(window.FIREBASE_CONFIG.apiKey).startsWith("YOUR_") && window.FIREBASE_CONFIG.projectId && !String(window.FIREBASE_CONFIG.projectId).startsWith("YOUR_")}
+function toast(t){const x=document.getElementById("toast")||makeToast();x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2600)}
+function makeToast(){const x=document.createElement("div");x.id="toast";x.className="toast";document.body.appendChild(x);return x}
+function closeModal(id){const m=document.getElementById(id);m.classList.remove("show");m.setAttribute("aria-hidden","true")}
+function openModal(id){const m=document.getElementById(id);m.classList.add("show");m.setAttribute("aria-hidden","false")}
+document.addEventListener("click",e=>{if(e.target.classList.contains("modal"))closeModal(e.target.id)})
+document.addEventListener("keydown",e=>{if(e.key==="Escape")["addModal","viewModal","successModal"].forEach(closeModal)})
+
+function initFilters(){document.getElementById("filters").innerHTML=Object.entries(TYPES).map(([k,v])=>`<button class="filter ${k==="all"?"active":""}" onclick="setFilter('${k}')">${v}</button>`).join("");document.getElementById("type").innerHTML=Object.entries(TYPES).filter(([k])=>k!=="all").map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}
+function setFilter(k){activeType=k;document.querySelectorAll(".filter").forEach(b=>b.classList.toggle("active",b.textContent===TYPES[k]));render()}
+function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function fmtDate(v){if(!v)return"بدون تاریخ";let d=v.toDate?v.toDate():new Date(v);return isNaN(d)?"بدون تاریخ":d.toLocaleDateString("fa-IR",{year:"numeric",month:"long",day:"numeric"})}
+function unlockDate(t){return t.unlockAt?.toDate?t.unlockAt.toDate():new Date(t.unlockAt)}
+function isLocked(t){return t.locked && unlockDate(t)>new Date()}
+function visibleToMe(t){return t.visibility==="shared" || t.ownerId===currentUser?.uid}
+function render(){
+const q=document.getElementById("search").value.trim().toLocaleLowerCase("fa");
+const list=treasures.filter(t=>visibleToMe(t)&& (activeType==="all"||t.type===activeType) && (!q || [t.title,t.description,t.uploaderName,TYPES[t.type]||""].join(" ").toLocaleLowerCase("fa").includes(q)));
+const grid=document.getElementById("grid");
+if(!list.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1"><div style="font-size:48px">💎</div><h2>هنوز گنجی اینجا نیست...</h2><p>اولین خاطره‌ی ارزشمندمون رو اضافه کن. ❤️</p><button onclick="openAdd()">💎 اضافه کردن گنج</button></div>`;return}
+grid.innerHTML=list.map(t=>isLocked(t)?lockedCard(t):openCard(t)).join("");
+}
+function openCard(t){return `<article class="t-card" onclick="viewTreasure('${escapeHtml(t.id)}')"><img class="t-photo" src="${escapeHtml(t.imageData||t.imageUrl||"")}" alt="${escapeHtml(t.title||"گنج")}" loading="lazy"><div class="t-body"><span class="type">${escapeHtml(TYPES[t.type]||TYPES.other)}</span><div class="t-title">${escapeHtml(t.title||"گنج")}</div><div class="t-date">📅 ${escapeHtml(fmtDate(t.memoryDate))}</div><div class="t-by">❤️ اضافه شده توسط: ${escapeHtml(t.uploaderName||"یکی از ما")}</div><p class="t-desc">${escapeHtml((t.description||"").slice(0,130))}</p></div></article>`}function lockedCard(t){return `<article class="t-card locked-card" onclick="viewTreasure('${escapeHtml(t.id)}')"><div><div class="lock-icon">🔒💎</div><div class="lock-title">یک گنج مخفی</div><div style="margin-top:7px">هنوز وقت باز شدنش نرسیده...</div><div class="lock-date">باز شدن در: ${escapeHtml(fmtDate(t.unlockAt))}</div><div class="t-by" style="margin-top:12px">اضافه شده توسط: ${escapeHtml(t.uploaderName||"یکی از ما")}</div></div></article>`}
+
+function openAdd(){
+if(!currentUser){toast("هنوز به Firebase وصل نشده‌ایم.");return}
+document.getElementById("treasureForm").reset();document.getElementById("preview").style.display="none";document.getElementById("unlockAt").style.display="none";
+const saved=localStorage.getItem("treasureUploaderName");if(saved)document.getElementById("uploaderName").value=saved;
+openModal("addModal")
+}
+function previewImage(e){const f=e.target.files?.[0],img=document.getElementById("preview");if(!f)return;if(!f.type.startsWith("image/")){e.target.value="";toast("فقط فایل تصویری مجاز است.");return}if(f.size>10*1024*1024){e.target.value="";toast("حجم عکس باید حداکثر ۱۰ مگابایت باشد.");return}img.src=URL.createObjectURL(f);img.style.display="block"}
+function toggleLock(){const locked=document.querySelector('input[name="lock"]:checked').value==="locked";document.getElementById("unlockAt").style.display=locked?"block":"none";document.getElementById("unlockAt").required=locked}
+function togglePrivateHint(){}
+function compressImage(file){
+return new Promise((resolve,reject)=>{
+const reader=new FileReader();reader.onerror=()=>reject(new Error("خواندن عکس ناموفق بود."));
+reader.onload=()=>{const img=new Image();img.onerror=()=>reject(new Error("فرمت تصویر قابل خواندن نیست."));
+img.onload=async()=>{let max=1800;let quality=.78;
+for(let i=0;i<7;i++){
+ const scale=Math.min(1,max/Math.max(img.width,img.height)),c=document.createElement("canvas");
+ c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));
+ const cx=c.getContext("2d");cx.drawImage(img,0,0,c.width,c.height);
+ const b=await new Promise(r=>c.toBlob(r,"image/jpeg",quality));
+ if(!b) return reject(new Error("فشرده‌سازی ناموفق بود."));
+ if(b.size<=600*1024) return resolve(b);
+ if(quality>.55) quality-=.08; else max=Math.round(max*.82);
+}
+reject(new Error("عکس برای ذخیره رایگان خیلی بزرگ است؛ عکس کوچک‌تری انتخاب کن."));
+};img.src=reader.result};reader.readAsDataURL(file)
+})
+}
+async function saveTreasure(e){
+e.preventDefault();if(!currentUser||!db)return;
+const file=document.getElementById("photo").files?.[0];if(!file){toast("یک عکس انتخاب کن 📷");return}
+if(!file.type.startsWith("image/")){toast("فقط فایل تصویری مجاز است.");return}
+if(file.size>10*1024*1024){toast("حجم عکس باید حداکثر ۱۰ مگابایت باشد.");return}
+const title=document.getElementById("title").value.trim(),name=document.getElementById("uploaderName").value.trim();
+const visibility=document.querySelector('input[name="visibility"]:checked').value;
+const lock=document.querySelector('input[name="lock"]:checked').value;
+const unlock=document.getElementById("unlockAt").value;
+if(!title||!name){toast("اسم گنج و نام شما لازم است.");return}
+let unlockAt=null;if(lock==="locked"){if(!unlock){toast("تاریخ باز شدن را انتخاب کن.");return}const d=new Date(unlock+"T00:00:00");if(d<=new Date()){toast("تاریخ باز شدن باید در آینده باشد.");return}unlockAt=firebase.firestore.Timestamp.fromDate(d)}
+const saveBtn=document.getElementById("saveBtn"),pw=document.getElementById("progressWrap"),bar=document.getElementById("progressBar"),pt=document.getElementById("progressText");saveBtn.disabled=true;pw.style.display="block";bar.style.width="2%";pt.textContent="در حال آماده‌سازی عکس...";
+let docRef=null;
+try{
+const treasureRef=db.collection("treasures").doc();
+docRef=treasureRef;
+const blob=await compressImage(file);
+if(blob.size>600*1024) throw new Error("عکس بعد از فشرده‌سازی هنوز بزرگ است؛ یک عکس کوچک‌تر انتخاب کن.");
+const imageData=await new Promise((resolve,reject)=>{
+  const r=new FileReader(); r.onerror=()=>reject(new Error("خواندن عکس فشرده‌شده ناموفق بود."));
+  r.onload=()=>resolve(r.result); r.readAsDataURL(blob);
+});
+bar.style.width="70%";pt.textContent="در حال ذخیره عکس و اطلاعات در Firestore...";
+await treasureRef.set({memoryDate:document.getElementById("date").value?firebase.firestore.Timestamp.fromDate(new Date(document.getElementById("date").value+"T12:00:00")):null,type:document.getElementById("type").value,visibility,locked:lock==="locked",unlockAt,ownerId:currentUser.uid,uploaderName:name,imageData,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+await treasureRef.collection("secret").doc("content").set({title,description:document.getElementById("description").value.trim()});
+localStorage.setItem("treasureUploaderName",name);
+closeModal("addModal");document.getElementById("progressWrap").style.display="none";saveBtn.disabled=false;render();sparkles();openModal("successModal");
+}catch(err){console.error(err);toast("ذخیره گنج انجام نشد: "+(err.message||"خطای ناشناخته"));saveBtn.disabled=false;pw.style.display="none";if(docRef){try{await docRef.delete()}catch(_){}try{await docRef.collection("secret").doc("content").delete()}catch(_){}}}
+}
+function sparkles(){for(let i=0;i<18;i++){const x=document.createElement("span");x.className="spark";x.textContent=["✨","💛","🤍","❤️","✦"][Math.floor(Math.random()*5)];x.style.left=(42+Math.random()*16)+"vw";x.style.top=(42+Math.random()*16)+"vh";x.style.setProperty("--dx",(Math.random()*260-130)+"px");x.style.setProperty("--dy",(Math.random()*240-150)+"px");x.style.animationDelay=(Math.random()*.25)+"s";document.body.appendChild(x);setTimeout(()=>x.remove(),1600)}}
+async function viewTreasure(id){
+const t=treasures.find(x=>x.id===id);if(!t)return;
+if(isLocked(t)){document.getElementById("viewContent").innerHTML=`<div class="success"><div class="big">🔒💎</div><h2>یک گنج مخفی</h2><p>هنوز وقت باز شدنش نرسیده...</p><p class="small">باز شدن در: ${escapeHtml(fmtDate(t.unlockAt))}</p></div>`;openModal("viewModal");return}
+try{
+const secret=await db.collection("treasures").doc(id).collection("secret").doc("content").get();
+if(!secret.exists)throw new Error("جزئیات گنج پیدا نشد.");
+const d=secret.data();t.title=d.title||"گنج";t.description=d.description||"";
+document.getElementById("viewContent").innerHTML=`<h2>${escapeHtml(t.title)}</h2><img id="detailPhoto" class="modal-photo" alt="${escapeHtml(t.title)}"><div class="details"><p><span class="detail-label">نوع گنج</span><br>${escapeHtml(TYPES[t.type]||TYPES.other)}</p><p><span class="detail-label">تاریخ</span><br>${escapeHtml(fmtDate(t.memoryDate))}</p><p><span class="detail-label">توضیح</span><br>${escapeHtml(t.description||"بدون توضیح")}</p><p><span class="detail-label">اضافه شده توسط</span><br>❤️ ${escapeHtml(t.uploaderName||"یکی از ما")}</p></div>${t.ownerId===currentUser?.uid?`<div style="margin-top:18px"><button class="danger-btn" onclick="deleteTreasure('${escapeHtml(t.id)}')">🗑️ حذف این گنج</button></div>`:""}`;
+openModal("viewModal");
+try{document.getElementById("detailPhoto").src=t.imageData||""}catch(e){document.getElementById("detailPhoto").alt="عکس قابل بارگذاری نیست";toast("دسترسی به عکس ممکن نشد.")}
+}catch(e){toast("جزئیات این گنج قابل خواندن نیست.")}
+}
+function subscribe(){
+unsubs.forEach(u=>u&&u());unsubs=[];
+let sharedItems=[], mineItems=[];
+const mergeAndLoad=()=>{
+  const map=new Map();
+  [...sharedItems,...mineItems].forEach(t=>map.set(t.id,t));
+  treasures=Array.from(map.values());
+  loadUrls();
+};
+const shared=db.collection("treasures").where("visibility","==","shared").onSnapshot(snap=>{
+  sharedItems=snap.docs.map(d=>({id:d.id,...d.data()}));
+  mergeAndLoad();
+},e=>showError("خواندن گنج‌های مشترک انجام نشد: "+e.message));
+const mine=db.collection("treasures").where("ownerId","==",currentUser.uid).onSnapshot(snap=>{
+  mineItems=snap.docs.map(d=>({id:d.id,...d.data()}));
+  mergeAndLoad();
+},e=>showError("خواندن گنج‌های خصوصی انجام نشد: "+e.message));
+unsubs.push(shared,mine);
+}
+async function loadUrls(){
+for(const treasure of treasures){
+  if(!isLocked(treasure) && !treasure.titleLoaded){
+    try{
+      const secret=await db.collection("treasures").doc(treasure.id).collection("secret").doc("content").get();
+      if(secret.exists){
+        const d=secret.data();
+        treasure.title=d.title||"گنج";
+        treasure.description=d.description||"";
+        treasure.titleLoaded=true;
+      }
+    }catch(_){}
+  }
+  if(!isLocked(treasure) && treasure.imagePath && !treasure.imageUrl){
+    try{treasure.imageUrl=await storage.ref(treasure.imagePath).getDownloadURL()}catch(_){}
+  }
+}
+render();
+}
+function showError(msg){document.getElementById("status").textContent="🔴 "+msg;toast(msg)}
+async function boot(){
+initFilters();
+if(!firebaseReady()){document.getElementById("status").textContent="⚠️ Firebase هنوز تنظیم نشده؛ فایل firebase-config.js را کامل کن.";render();return}
+try{
+if(!firebase.apps.length)firebase.initializeApp(window.FIREBASE_CONFIG);
+auth=firebase.auth();db=firebase.firestore();
+await auth.signInAnonymously();
+currentUser=auth.currentUser;document.getElementById("status").textContent="🟢 گنجینه آنلاین و مشترک است.";subscribe();
+}catch(e){console.error(e);document.getElementById("status").textContent="🔴 اتصال Firebase ناموفق است.";document.getElementById("grid").innerHTML=`<div class="empty" style="grid-column:1/-1"><h2>اتصال برقرار نشد</h2><p>Firebase Authentication و Firestore را بررسی کن.</p></div>`}
+}
+setInterval(()=>{if(currentUser)loadUrls();else render()},60000);
+boot();
+</script>
+</body>
+</html>
